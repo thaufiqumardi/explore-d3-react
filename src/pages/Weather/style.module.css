@@ -1,0 +1,19 @@
+.root {
+  padding: 30px;
+  width: 80%;
+  margin: auto;
+}
+.title {
+  text-align: center;
+}
+.charts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.lineChart {
+  margin: 7px;
+  border: 1px solid black;
+  flex: 1;
+  padding: 10px;
+}

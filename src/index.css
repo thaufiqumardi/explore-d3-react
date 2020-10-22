@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'GochiHand';
+  src: local('GochiHand'),
+    url('./assets/fonts/GochiHand-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'BalsamiqSans-Regular';
+  src: local('BalsamiqSans-Regular'),
+    url('./assets/fonts/BalsamiqSans-Regular.ttf') format('truetype');
+}
+html,
+body {
+  margin: 0;
+  font-family: 'BalsamiqSans-Regular';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+}
+svg {
+  margin: 5px;
+  vertical-align: top;
+}
+
+svg text {
+  font-family: sans-serif;
+  font-size: 10px;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
