@@ -1,0 +1,40 @@
+.root {
+  padding: 30px;
+  width: 80%;
+  margin: auto;
+}
+.dayBox {
+  background-color: rgb(97, 194, 105);
+  height: 180px;
+  width: 129px;
+  padding: 10px 5px;
+}
+.dayBox:nth-child(2) {
+  margin-top: 30px;
+}
+.dayBox:nth-child(3) {
+  margin-top: 50px;
+}
+.dayBox:nth-child(4) {
+  margin-top: 70px;
+}
+.dayBox:nth-child(5) {
+  margin-top: 50px;
+}
+.dayBox:nth-child(6) {
+  margin-top: 30px;
+}
+.weekContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 65%;
+  padding: 10px;
+  margin: 0 auto;
+}
+.dailyExpenseInnerBox {
+  flex: 1;
+  height: 70%;
+  margin: 0;
+}
