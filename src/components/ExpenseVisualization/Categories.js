@@ -7,7 +7,6 @@ import deleteIconSrc from '../../assets/svg/delete.svg';
 var height = 600;
 var topPadding = 150;
 var radius = 55;
-var white = '#fff8fa';
 var deleteIconY = 160;
 var deleteIconRadius = 24;
 

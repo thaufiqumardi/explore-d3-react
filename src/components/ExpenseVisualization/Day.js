@@ -24,7 +24,7 @@ class Day extends Component {
     this.state = {};
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     xScale.range([margin.left, this.props.width - margin.right]);
   }
 

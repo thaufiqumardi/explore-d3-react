@@ -126,15 +126,9 @@ class ExpensePage extends React.Component {
 
   render() {
     const selectedWeek = d3.timeFormat('%B %d, %Y')(this.state.selectedWeek);
-    const style = {
-      width,
-      margin: 'auto'
-    }
+   
     const svgStyle = {
-      border: '1px dasher red',
       overflow: 'visible',
-      position:'absolute',
-      margin: '0 auto',
       top: 0,
       width,
       height,

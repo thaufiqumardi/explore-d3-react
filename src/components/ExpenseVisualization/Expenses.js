@@ -36,7 +36,7 @@ class Expenses extends Component {
     this.mouseOver = this.mouseOver.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     xScale.range([margin.left, this.props.width - margin.right]);
     simulation.on('tick', this.forceTick);
     drag.on('start', this.dragStart)
