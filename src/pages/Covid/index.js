@@ -4,7 +4,7 @@ import BarChart from '../../components/BarChart';
 import style from './style.module.css'
 
 const red = '#eb6a5b';
-const green = '#b6e86f';
+// const green = '#b6e86f';
 const blue = '#52b6ca';
 
 class ExamplePage extends React.Component {

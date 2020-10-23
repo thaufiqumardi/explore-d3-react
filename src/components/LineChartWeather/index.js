@@ -7,7 +7,7 @@ const height = 400;
 const margin = {top: 20, right: 5, bottom:20, left:45};
 const red = '#eb6a5b';
 const green = '#b6e86f';
-const blue = '#52b6ca';
+// const blue = '#52b6ca';
 // const colors = chroma.scale([blue,green,red])
 
 class LineChart extends React.Component {
