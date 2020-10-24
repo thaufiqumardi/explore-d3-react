@@ -1,38 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
 import * as d3 from 'd3';
 import _ from 'lodash';
-
 import chroma from 'chroma-js';
 
-var height = 650;
-var dayWidth = 55;
-var dayHeight = 75;
-var topPadding = 150;
-var margin = {left: 40, top: 20, right: 40, bottom: 20};
+const height = 650;
+const dayWidth = 55;
+const dayHeight = 75;
+const topPadding = 150;
+const margin = {left: 40, top:20, right: 40, bottom: 20};
 
-// d3 functions
-var xScale = d3.scaleLinear().domain([0, 6]);
-var yScale = d3.scaleLinear().range([height - margin.bottom, margin.top]);
-var amountScale = d3.scaleLog();
-var colorScale = chroma.scale(['#53c3ac', '#f7e883', '#e85178']);
+const xScale = d3.scaleLinear().domain([0,6]);
+const yScale = d3.scaleLinear().range([height - margin.bottom, margin.top]);
+const amountScale = d3.scaleLog();
+const colorScale = chroma.scale(['#53c3ac', '#f7e883', '#e85178']);
 
-class Day extends Component {
+class Day extends React.Component {
 
   constructor(props) {
     super(props);
-
+    this.refDayContainer = React.createRef();
     this.state = {};
   }
 
-  UNSAFE_componentWillMount() {
-    xScale.range([margin.left, this.props.width - margin.right]);
-  }
-
   componentDidMount() {
-    this.container = d3.select(this.refs.container);
+    xScale.range([margin.left, this.props.width - margin.right]);
+
+    this.container = d3.select(this.refDayContainer.current);
     this.calculateData();
-    this.renderBacks();
-    // this.renderDays();
+    this.renderDays();
+    // this.renderBacks();
   }
 
   componentDidUpdate() {
@@ -41,42 +37,40 @@ class Day extends Component {
   }
 
   calculateData() {
-    var weeksExtent = d3.extent(this.props.expenses,
-      d => d3.timeWeek.floor(d.date));
+    const {expenses} = this.props
+    const weeksExtent = d3.extent(expenses, d => d3.timeWeek.floor(d.date));
     yScale.domain(weeksExtent);
 
-    this.totalsByDay = _.chain(this.props.expenses)
+    this.totalsByDay = _.chain(expenses)
       .groupBy(d => d3.timeDay.floor(d.date))
       .reduce((obj, expenses, date) => {
         obj[date] = _.sumBy(expenses, 'amount');
         return obj;
       }, {}).value();
-    // get min+max total amounts per day
-    var totalsExtent = d3.extent(_.values(this.totalsByDay));
-    amountScale.domain(totalsExtent);
 
-    this.days = _.map(this.totalsByDay, (total, date) => {
-      date = new Date(date);
-      var {x, y} = this.calculateDayPosition(date, true);
+      const totalsExtent = d3.extent(_.values(this.totalsByDay));
+      amountScale.domain(totalsExtent);
 
-      return {
-        date,
-        fill: colorScale(amountScale(total)),
-        x, y,
-      };
-    });
-
-    // get min+max dates
-    var [minDate, maxDate] = d3.extent(this.props.expenses,
-      d => d3.timeDay.floor(d.date));
-    // backs should be all dates in range as well as an extra for selectedWeek
-    var selectedWeek = d3.timeDay.range(this.props.selectedWeek,
-      d3.timeWeek.offset(this.props.selectedWeek, 1));
-    this.backs = _.chain(selectedWeek)
-      .map(date => this.calculateDayPosition(date, true))
-      .union(_.map(d3.timeDay.range(minDate, maxDate),
-        (date) => this.calculateDayPosition(date)))
-      .value();
+      this.days = _.map(this.totalsByDay, (total, date) => {
+        date = new Date(date);
+        const { x, y } = this.calculateDayPosition(date, true);
+        return {
+          date,
+          fill: colorScale(amountScale(total)),
+          x,y
+        }
+      })
+      // get min+max dates
+      const [minDate, maxDate] = d3.extent(this.props.expenses,
+        d => d3.timeDay.floor(d.date));
+      // backs should be all dates in range as well as an extra for selectedWeek
+      const selectedWeek = d3.timeDay.range(this.props.selectedWeek,
+        d3.timeWeek.offset(this.props.selectedWeek, 1));
+      this.backs = _.chain(selectedWeek)
+        .map(date => this.calculateDayPosition(date, true))
+        .union(_.map(d3.timeDay.range(minDate, maxDate),
+          (date) => this.calculateDayPosition(date)))
+        .value();
   }
 
   calculateDayPosition(date, shouldSelectedWeekCurve) {
@@ -152,8 +146,8 @@ class Day extends Component {
 
   render() {
     return (
-      <g ref='container' />
-    );
+      <g ref={this.refDayContainer}/>
+    )
   }
 }
 

@@ -13,7 +13,7 @@ class ExamplePage extends React.Component {
   }
 
   componentDidMount() {
-    fetch(process.env.REACT_APP_API_BASE_URL+'/total/dayone/country/australia')
+    fetch(process.env.REACT_APP_API_BASE_URL+'/total/dayone/country/indonesia')
       .then(res => res.json())
       .then(data => {
         const newData = data.map(d => ({...d, Date: new Date(d.Date), avg: (d.Active + d.Confirmed )/2}))

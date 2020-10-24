@@ -10,6 +10,7 @@ class Home extends React.Component {
         <h1 className={style.title}>Data Visualization D3 with ReactJS</h1>
         <Link to="/covid" className={style.navigationItem}>Covid19</Link>
         <Link to="/weather" className={style.navigationItem}>Weather History</Link>
+        <Link to="/apps-tracker" className={style.navigationItem}>Apps History</Link>
         <Link to="/expense" className={style.navigationItem}>Personal Expense</Link>
       </div>
     )

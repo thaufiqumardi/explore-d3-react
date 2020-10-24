@@ -5,6 +5,7 @@ import Covid from './pages/Covid';
 import ExpensePage from './pages/Expense';
 import Home from './pages/Home';
 import Weather from './pages/Weather';
+import DigitalTracker from './pages/DigitalTracker';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route component={Covid} path="/covid" exact/>
       <Route component={Weather} path="/weather"/>
       <Route component={ExpensePage} path="/expense"/>
+      <Route component={DigitalTracker} path="/apps-tracker"/>
       <Route component={Home} path="/" exact/>
     </Switch>
   );
